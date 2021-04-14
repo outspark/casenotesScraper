@@ -19,12 +19,12 @@ def save_2_txt(url):
         f.write(str(content))
         f.close()
 
-def opt_2_query(option_court, option_period, option_case):
+def opt_2_query(option_court, option_period, option_case): 
     court = "&court="+str(option_court)
     period = "&period"+str(option_period)
     case = "&case"+str(option_case)
     opts = [court, period, case]
-    return opts
+    return opts #returns formatted list of user options
 
 def crawler(keyword, opts):
     for page in range(20):
@@ -33,7 +33,7 @@ def crawler(keyword, opts):
         col_res = requests.get(collection_url)
         if col_res.status_code == 200:
             col_html = col_res.text
-            soup = BeautifulSoup(col_html, "html.parser")
+            soup = BeautifulSoup(col_html, "html.parser") #Creates soup obj for parsing 
             for lnk in soup.select('.searched_item a'):
                 time.sleep(3)
                 try:
